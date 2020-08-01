@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Us8-HS-Qou">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="N56-lm-2Zb">
+            <objects>
+                <viewController id="Us8-HS-Qou" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="obG-pZ-ptS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9W4-6D-Qa8">
+                                <rect key="frame" x="107" y="196" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9W4-6D-Qa8" secondAttribute="height" multiplier="1:1" id="TY9-dz-g7d"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9W4-6D-Qa8" firstAttribute="centerX" secondItem="obG-pZ-ptS" secondAttribute="centerX" id="5vu-Dp-Q2o"/>
+                            <constraint firstItem="9W4-6D-Qa8" firstAttribute="width" secondItem="obG-pZ-ptS" secondAttribute="height" multiplier="25:112" id="8Me-eP-Ae2"/>
+                            <constraint firstItem="9W4-6D-Qa8" firstAttribute="top" secondItem="uyS-5T-edY" secondAttribute="top" constant="152" id="Dyg-bM-Fd1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uyS-5T-edY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wAP-Wp-jEB" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-951" y="110"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="512" height="512"/>
+    </resources>
+</document>

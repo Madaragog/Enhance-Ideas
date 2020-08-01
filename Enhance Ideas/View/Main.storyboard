@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x1n-fy-n6x">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign In View Controller-->
+        <scene sceneID="CVi-l7-7Sj">
+            <objects>
+                <viewController id="x1n-fy-n6x" customClass="SignInViewController" customModule="Enhance_Ideas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jck-TD-yya">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="76e-QC-4Aa">
+                                <rect key="frame" x="107" y="196" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="76e-QC-4Aa" secondAttribute="height" multiplier="1:1" id="9qC-OQ-AjK"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeH-1C-ZPP">
+                                <rect key="frame" x="47" y="682" width="320" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aeH-1C-ZPP" secondAttribute="height" multiplier="4:1" id="vTD-YR-kPx"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="googleSignIn">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressSignInWithGoogleButton:" destination="x1n-fy-n6x" eventType="touchUpInside" id="PNm-ni-LGN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aeH-1C-ZPP" firstAttribute="centerX" secondItem="Jck-TD-yya" secondAttribute="centerX" id="4Jx-Ew-kxI"/>
+                            <constraint firstItem="76e-QC-4Aa" firstAttribute="centerX" secondItem="Jck-TD-yya" secondAttribute="centerX" id="HXK-oS-xRT"/>
+                            <constraint firstItem="76e-QC-4Aa" firstAttribute="top" secondItem="jWx-cB-RQh" secondAttribute="top" constant="152" id="Ss6-JG-Ywq"/>
+                            <constraint firstItem="aeH-1C-ZPP" firstAttribute="leading" secondItem="jWx-cB-RQh" secondAttribute="leading" constant="47" id="YBu-lk-7po"/>
+                            <constraint firstItem="jWx-cB-RQh" firstAttribute="trailing" secondItem="aeH-1C-ZPP" secondAttribute="trailing" constant="47" id="cY3-2p-Rz8"/>
+                            <constraint firstItem="76e-QC-4Aa" firstAttribute="width" secondItem="Jck-TD-yya" secondAttribute="height" multiplier="25:112" id="mDw-Mo-VEe"/>
+                            <constraint firstItem="jWx-cB-RQh" firstAttribute="bottom" secondItem="aeH-1C-ZPP" secondAttribute="bottom" constant="100" id="uTG-OB-Kfd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jWx-cB-RQh"/>
+                    </view>
+                    <connections>
+                        <outlet property="signInWithGoogleButton" destination="aeH-1C-ZPP" id="pi2-qu-Pwl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Gb-eh-5eN" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-951" y="110"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="googleSignIn" width="191" height="46"/>
+        <image name="logo" width="512" height="512"/>
+    </resources>
+</document>
