@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3BC194ED918D4FCCB7E5BB8D /* Pods_Enhance_Ideas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55E38B32EE5504BEE698DB8 /* Pods_Enhance_Ideas.framework */; };
 		82170B7A24D9C20200D9870E /* EnhanceIdeasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82170B7924D9C20200D9870E /* EnhanceIdeasViewController.swift */; };
+		8240576B24DCF86000DF6591 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8240576A24DCF86000DF6591 /* GoogleService-Info.plist */; };
 		82A11E7524D5D57700BB129D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A11E7424D5D57700BB129D /* SignInViewController.swift */; };
 		82A11E7724D5EF8900BB129D /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A11E7624D5EF8900BB129D /* credentials.plist */; };
 		82EDDF0F24D3267600F42688 /* Enhance_Ideas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82EDDEFD24D324F100F42688 /* Enhance_Ideas.xcdatamodeld */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		82170B7924D9C20200D9870E /* EnhanceIdeasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhanceIdeasViewController.swift; sourceTree = "<group>"; };
+		8240576A24DCF86000DF6591 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82A11E7424D5D57700BB129D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		82A11E7624D5EF8900BB129D /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		82EDDEF124D324F100F42688 /* Enhance Ideas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enhance Ideas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,8 @@
 		82EDDEE824D324F100F42688 = {
 			isa = PBXGroup;
 			children = (
+				82A11E7624D5EF8900BB129D /* credentials.plist */,
+				8240576A24DCF86000DF6591 /* GoogleService-Info.plist */,
 				82EDDEF324D324F100F42688 /* Enhance Ideas */,
 				82EDDEF224D324F100F42688 /* Products */,
 				40D38CB3C96BCCEE2460C546 /* Pods */,
@@ -83,7 +87,6 @@
 				82EDDEF424D324F100F42688 /* AppDelegate.swift */,
 				82EDDEF624D324F100F42688 /* SceneDelegate.swift */,
 				82EDDF0024D324F200F42688 /* Assets.xcassets */,
-				82A11E7624D5EF8900BB129D /* credentials.plist */,
 				82EDDF0524D324F200F42688 /* Info.plist */,
 				82EDDEFD24D324F100F42688 /* Enhance_Ideas.xcdatamodeld */,
 				82EDDF0B24D3255900F42688 /* Model */,
@@ -191,6 +194,7 @@
 			files = (
 				82EDDF1824D32A8A00F42688 /* Main.storyboard in Resources */,
 				82A11E7724D5EF8900BB129D /* credentials.plist in Resources */,
+				8240576B24DCF86000DF6591 /* GoogleService-Info.plist in Resources */,
 				82EDDF1324D326E600F42688 /* Assets.xcassets in Resources */,
 				82EDDF1724D32A8A00F42688 /* LaunchScreen.storyboard in Resources */,
 			);

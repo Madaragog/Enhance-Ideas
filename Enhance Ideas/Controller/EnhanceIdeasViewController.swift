@@ -7,10 +7,26 @@
 //
 
 import UIKit
+import Firebase
 
 class EnhanceIdeasViewController: UIViewController {
+
+//    private var handle: AuthStateDidChangeListenerHandle?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+          // ...
+//        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+//        Auth.auth().removeStateDidChangeListener(handle!)
     }
 }
 

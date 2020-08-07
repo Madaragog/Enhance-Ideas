@@ -7,4 +7,6 @@ target 'Enhance Ideas' do
 
   # Pods for Enhance Ideas
   pod 'GoogleSignIn'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
 end
