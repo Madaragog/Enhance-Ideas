@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
           }
           return
         }
+        NotificationCenter.default.post(name:
+        NSNotification.Name("performSuccessSignInSegue"), object: nil)
         /*
         // Perform any operations on signed in user here.
         let userId = user.userID                  // For client-side use only!

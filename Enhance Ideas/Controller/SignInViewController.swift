@@ -10,18 +10,31 @@ import UIKit
 import GoogleSignIn
 
 class SignInViewController: UIViewController {
-    @IBOutlet weak var signInWithGoogleButton: UIButton!
+    @IBOutlet weak var googleSignInButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        signInWithGoogleButton.setBackgroundImage(UIImage(named: "googleSignInPressed"), for: .highlighted)
+        googleSignInButton.setBackgroundImage(UIImage(named: "googleSignInPressed"), for: .highlighted)
         GIDSignIn.sharedInstance()?.presentingViewController = self
-
-        // Automatically sign in the user.
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(performSegueIfCurrentUserIsNotEmpty),
+                                               name: NSNotification.Name("performSuccessSignInSegue"),
+                                               object: nil)
     }
 
-    @IBAction func didPressSignInWithGoogleButton(_ sender: UIButton) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        performSegueIfCurrentUserIsNotEmpty()
+    }
+
+    @IBAction func signInWithGoogleButton() {
         GIDSignIn.sharedInstance()?.signIn()
+    }
+
+    @objc private func performSegueIfCurrentUserIsNotEmpty() {
+        if GIDSignIn.sharedInstance()?.currentUser != nil {
+            performSegue(withIdentifier: "SuccessSignInSegue", sender: nil)
+        }
     }
 }

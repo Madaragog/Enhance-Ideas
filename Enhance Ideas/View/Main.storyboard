@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x1n-fy-n6x">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -31,7 +31,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressSignInWithGoogleButton:" destination="x1n-fy-n6x" eventType="touchUpInside" id="PNm-ni-LGN"/>
+                                    <action selector="signInWithGoogleButton" destination="x1n-fy-n6x" eventType="touchUpInside" id="11D-Z4-q5r"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -48,16 +48,112 @@
                         <viewLayoutGuide key="safeArea" id="jWx-cB-RQh"/>
                     </view>
                     <connections>
-                        <outlet property="signInWithGoogleButton" destination="aeH-1C-ZPP" id="pi2-qu-Pwl"/>
+                        <outlet property="googleSignInButton" destination="aeH-1C-ZPP" id="pi2-qu-Pwl"/>
+                        <segue destination="p4s-ae-zks" kind="presentation" identifier="SuccessSignInSegue" modalPresentationStyle="fullScreen" id="Fc5-k9-rM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Gb-eh-5eN" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-951" y="110"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Kly-IR-pyV">
+            <objects>
+                <tabBarController id="p4s-ae-zks" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zpY-QU-JET"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t0S-RE-XuL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xOJ-EJ-wbc" kind="relationship" relationship="viewControllers" id="yGT-3N-FJL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tMs-8d-uT9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="108"/>
+        </scene>
+        <!--Enhance Ideas View Controller-->
+        <scene sceneID="cG5-bd-mQA">
+            <objects>
+                <viewController id="xOJ-EJ-wbc" customClass="EnhanceIdeasViewController" customModule="Enhance_Ideas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SGu-u8-nxG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRQ-cu-lZ5">
+                                <rect key="frame" x="0.0" y="52" width="414" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enhance Ideas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfq-Yn-isQ">
+                                        <rect key="frame" x="8" y="0.0" width="236.5" height="36"/>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="37"/>
+                                        <color key="textColor" red="0.77100354429999995" green="0.65354096890000002" blue="0.49801063540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPr-pn-ouG">
+                                        <rect key="frame" x="370" y="0.0" width="36" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dPr-pn-ouG" secondAttribute="height" multiplier="1:1" id="gGt-Ht-cXv"/>
+                                        </constraints>
+                                        <state key="normal" image="addIdea"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="dPr-pn-ouG" secondAttribute="bottom" id="3PE-7d-OG8"/>
+                                    <constraint firstItem="pfq-Yn-isQ" firstAttribute="top" secondItem="cRQ-cu-lZ5" secondAttribute="top" id="4Sn-9w-KLh"/>
+                                    <constraint firstAttribute="bottom" secondItem="pfq-Yn-isQ" secondAttribute="bottom" id="P0s-zl-5WG"/>
+                                    <constraint firstAttribute="height" constant="36" id="P7b-6A-Czi"/>
+                                    <constraint firstAttribute="trailing" secondItem="dPr-pn-ouG" secondAttribute="trailing" constant="8" id="Uqz-gF-bZZ"/>
+                                    <constraint firstItem="pfq-Yn-isQ" firstAttribute="leading" secondItem="cRQ-cu-lZ5" secondAttribute="leading" constant="8" id="hHD-sm-GfN"/>
+                                    <constraint firstItem="dPr-pn-ouG" firstAttribute="top" secondItem="cRQ-cu-lZ5" secondAttribute="top" id="pSF-LJ-So7"/>
+                                    <constraint firstItem="dPr-pn-ouG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pfq-Yn-isQ" secondAttribute="trailing" constant="8" symbolic="YES" id="vlf-NQ-k9a"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dja-Zd-vbA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EnhanceIdeasCell" id="U88-0b-82L">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U88-0b-82L" id="Sqd-k7-uo6">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xOJ-EJ-wbc" id="okd-uq-5rU"/>
+                                    <outlet property="delegate" destination="xOJ-EJ-wbc" id="fY2-V3-GYR"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cRQ-cu-lZ5" firstAttribute="top" secondItem="G3D-ox-mES" secondAttribute="top" constant="8" id="559-EF-g4r"/>
+                            <constraint firstItem="cRQ-cu-lZ5" firstAttribute="trailing" secondItem="G3D-ox-mES" secondAttribute="trailing" id="N3j-hR-jFc"/>
+                            <constraint firstItem="dja-Zd-vbA" firstAttribute="leading" secondItem="G3D-ox-mES" secondAttribute="leading" id="dOQ-Z3-Ikh"/>
+                            <constraint firstItem="G3D-ox-mES" firstAttribute="trailing" secondItem="dja-Zd-vbA" secondAttribute="trailing" id="i2F-tc-izN"/>
+                            <constraint firstItem="cRQ-cu-lZ5" firstAttribute="leading" secondItem="G3D-ox-mES" secondAttribute="leading" id="khn-4N-Vdq"/>
+                            <constraint firstItem="dja-Zd-vbA" firstAttribute="top" secondItem="cRQ-cu-lZ5" secondAttribute="bottom" id="wDh-Ch-Dj5"/>
+                            <constraint firstItem="G3D-ox-mES" firstAttribute="bottom" secondItem="dja-Zd-vbA" secondAttribute="bottom" id="zH7-Gs-2aw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G3D-ox-mES"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="enhance" id="fnC-pK-POf"/>
+                    <navigationItem key="navigationItem" id="fxY-HH-6UI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wfa-ln-mJo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064" y="-415"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="addIdea" width="25" height="25"/>
+        <image name="enhance" width="30" height="30"/>
         <image name="googleSignIn" width="191" height="46"/>
-        <image name="logo" width="512" height="512"/>
+        <image name="logo" width="256" height="256"/>
     </resources>
 </document>
