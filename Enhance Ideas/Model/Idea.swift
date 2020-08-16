@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Idea {
+struct Idea: Equatable {
     var documentID = ""
     var author = ""
     var idea = ""

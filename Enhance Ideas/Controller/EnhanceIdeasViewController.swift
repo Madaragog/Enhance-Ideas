@@ -7,49 +7,59 @@
 //
 
 import UIKit
-import Firebase
+//import Firebase
 
 class EnhanceIdeasViewController: UIViewController {
-    @IBOutlet weak var ideasToEnhanceTableView: UITableView!
+    @IBOutlet weak var enhanceIdeasTableView: UITableView!
     @IBOutlet weak var addIdeaButton: UIButton!
-    @IBOutlet weak var enhanceTabBarItem: UITabBarItem!
-
-    private var ideasToEnhance: [Idea] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        readFirestoreData()
+        readFireStoreData()
         addIdeaButton.setThemeImage(darkThemeImg: "addIdeaReversedColors", lightThemeImg: "addIdea")
+        handleNotifications()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        ideasToEnhanceTableView.reloadData()
+        readFireStoreData()
     }
-// swiftlint:disable identifier_name
-    private func readFirestoreData() {
-        let db = Firestore.firestore()
 
-        db.collection("ideasToEnhance").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-                    let author = document["author"] as? String ?? "df"
-                    let idea = document["idea"] as? String ?? "dsf"
-                    guard let isCompleted = document["isCompleted"] as? Bool else {
-                        return
-                    }
-                    self.ideasToEnhance.append(Idea(documentID: document.documentID,
-                                                    author: author,
-                                                    idea: idea,
-                                                    isCompleted: isCompleted))
-                }
-            }
-            self.ideasToEnhanceTableView.reloadData()
-        }
+    private func handleNotifications() {
+        notificationsToReceive()
+        let reloadTableViewNotifName = Notification.Name(rawValue: "reloadingTableView")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadTableView),
+                                               name: reloadTableViewNotifName,
+                                               object: nil)
     }
+
+    @objc private func reloadTableView() {
+        enhanceIdeasTableView.reloadData()
+    }
+
+/*
+     private func handleNotification() {
+         let dataReceivedNotifName = Notification.Name(rawValue: "dataReceived")
+         NotificationCenter.default.addObserver(self,
+                                                selector: #selector(reloadTableViewData),
+                                                name: dataReceivedNotifName,
+                                                object: nil)
+         let ideaSubmitedNotifName = Notification.Name(rawValue: "IdeaSubmited")
+         NotificationCenter.default.addObserver(self,
+                                                selector: #selector(readFireStoreData),
+                                                name: ideaSubmitedNotifName,
+                                                object: nil)
+     }
+
+     @objc private func readFireStoreData() {
+         FirestoreManagement.shared.readFirestoreData()
+     }
+
+     @objc private func reloadTableViewData() {
+         enhanceIdeasTableView.reloadData()
+     }
+     */
 }
 
 extension EnhanceIdeasViewController: UITableViewDataSource, UITableViewDelegate {
@@ -59,20 +69,42 @@ extension EnhanceIdeasViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ideasToEnhance.count
+        return FirestoreManagement.shared.ideasToEnhance.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("3")
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "IdeaCell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EnhanceIdeaCell",
                                                        for: indexPath) as? IdeasTableViewCell else {
             return UITableViewCell()
         }
 
-        let idea = ideasToEnhance[indexPath.row]
+        let idea = FirestoreManagement.shared.ideasToEnhance[indexPath.row]
 
         cell.configure(idea: idea)
 
         return cell
+    }
+}
+
+extension UIViewController {
+    func notificationsToReceive() {
+        let dataReceivedNotifName = Notification.Name(rawValue: "dataReceived")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadTableViewData),
+                                               name: dataReceivedNotifName,
+                                               object: nil)
+        let ideaSubmitedNotifName = Notification.Name(rawValue: "IdeaSubmited")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(readFireStoreData),
+                                               name: ideaSubmitedNotifName,
+                                               object: nil)
+    }
+
+    @objc func readFireStoreData() {
+        FirestoreManagement.shared.readFirestoreData()
+    }
+
+    @objc public func reloadTableViewData() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadingTableView"), object: nil)
     }
 }

@@ -29,6 +29,16 @@ extension UIView {
         layer.colors = [colorTop, colorBottom]
         self.layer.addSublayer(layer)
     }
+
+    public func setBackgroundForThemesMode() {
+        if #available(iOS 12.0, *) {
+            if traitCollection.userInterfaceStyle == .dark {
+                self.backgroundColor = .white
+            }
+        } else {
+            self.backgroundColor = .black
+        }
+    }
 }
 
 extension UIButton {
