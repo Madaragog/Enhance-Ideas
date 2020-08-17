@@ -17,16 +17,17 @@ class FirestoreManagement {
 
     private(set) var ideasToEnhance: [Idea] = []
     private(set) var enhancedIdeas: [Idea] = []
+    private(set) var ideaComments: [Comment] = []
     private let db = Firestore.firestore()
 
-    public func readFirestoreData() {
+    public func readFirestoreIdeasData() {
         db.collection("ideasToEnhance").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
                 for document in querySnapshot!.documents {
-                    let author = document["author"] as? String ?? "df"
-                    let idea = document["idea"] as? String ?? "dsf"
+                    let author = document["author"] as? String ?? ""
+                    let idea = document["idea"] as? String ?? ""
                     guard let isCompleted = document["isCompleted"] as? Bool else {
                         return
                     }
@@ -42,7 +43,28 @@ class FirestoreManagement {
         }
     }
 
-    public func uploadFirestoreData(idea: String) {
+    public func readFirestoreCommentsData() {
+        db.collection("comments").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let author = document["author"] as? String ?? ""
+                    let comment = document["comment"] as? String ?? ""
+                    let ideaID = document["ideaID"] as? String ?? ""
+                    let noSpaceIdeaID = ideaID.replacingOccurrences(of: " ", with: "")
+                    var comments: [Comment] = []
+                    comments.append(Comment(ideaID: noSpaceIdeaID,
+                                                    author: author,
+                                                    comment: comment))
+                    self.handleComments(comments: comments)
+                }
+
+            }
+        }
+    }
+
+    public func uploadIdeaFirestoreData(idea: String) {
         var ref: DocumentReference? = nil
         ref = db.collection("ideasToEnhance").addDocument(data: [
             "author": "\(googleUser)",
@@ -53,6 +75,36 @@ class FirestoreManagement {
                 print("Error adding document: \(error)")
             } else {
                 print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+
+    public func uploadIdeaCommentFirestoreData(comment: String, ideaID: String) {
+        var ref: DocumentReference? = nil
+        ref = db.collection("comments").addDocument(data: [
+            "author": "\(googleUser)",
+            "comment": "\(comment)",
+            "ideaID": "\(ideaID)"
+        ]) { error in
+            if let error = error {
+                print("Error adding document: \(error)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+
+    public func updateIdeaFromEnhanceToEnhanced(ideaID: String) {
+        let idea = db.collection("ideasToEnhance").document(ideaID)
+        idea.updateData([
+            "isCompleted": true
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+                self.ideasToEnhance.removeAll()
+                self.readFirestoreIdeasData()
             }
         }
     }
@@ -70,5 +122,14 @@ class FirestoreManagement {
             }
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataReceived"), object: nil)
+    }
+
+    private func handleComments(comments: [Comment]) {
+        for comment in comments {
+            if ideaComments.contains(comment) == false {
+                ideaComments.insert(comment, at: 0)
+            }
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentsReceived"), object: nil)
     }
 }

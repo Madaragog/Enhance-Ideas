@@ -14,6 +14,8 @@
 		821CC9AA24E89ACB006689F6 /* SubmitIdeaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9A924E89ACB006689F6 /* SubmitIdeaViewController.swift */; };
 		821CC9AC24E8C709006689F6 /* FirestoreManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9AB24E8C709006689F6 /* FirestoreManagement.swift */; };
 		821CC9B024E99C11006689F6 /* EnhancedIdeasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9AF24E99C11006689F6 /* EnhancedIdeasViewController.swift */; };
+		821CC9B424EA0053006689F6 /* IdeaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9B324EA0052006689F6 /* IdeaDetailViewController.swift */; };
+		821CC9B624EA6FA9006689F6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9B524EA6FA9006689F6 /* Comment.swift */; };
 		8240576B24DCF86000DF6591 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8240576A24DCF86000DF6591 /* GoogleService-Info.plist */; };
 		82A11E7524D5D57700BB129D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A11E7424D5D57700BB129D /* SignInViewController.swift */; };
 		82A11E7724D5EF8900BB129D /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A11E7624D5EF8900BB129D /* credentials.plist */; };
@@ -34,6 +36,8 @@
 		821CC9A924E89ACB006689F6 /* SubmitIdeaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitIdeaViewController.swift; sourceTree = "<group>"; };
 		821CC9AB24E8C709006689F6 /* FirestoreManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManagement.swift; sourceTree = "<group>"; };
 		821CC9AF24E99C11006689F6 /* EnhancedIdeasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedIdeasViewController.swift; sourceTree = "<group>"; };
+		821CC9B324EA0052006689F6 /* IdeaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaDetailViewController.swift; sourceTree = "<group>"; };
+		821CC9B524EA6FA9006689F6 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8240576A24DCF86000DF6591 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82A11E7424D5D57700BB129D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		82A11E7624D5EF8900BB129D /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				821CC9A524E603EA006689F6 /* Idea.swift */,
+				821CC9B524EA6FA9006689F6 /* Comment.swift */,
 				821CC9AB24E8C709006689F6 /* FirestoreManagement.swift */,
 			);
 			path = Model;
@@ -136,6 +141,7 @@
 				82170B7924D9C20200D9870E /* EnhanceIdeasViewController.swift */,
 				821CC9A924E89ACB006689F6 /* SubmitIdeaViewController.swift */,
 				821CC9AF24E99C11006689F6 /* EnhancedIdeasViewController.swift */,
+				821CC9B324EA0052006689F6 /* IdeaDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -310,8 +316,10 @@
 				821CC9A824E64234006689F6 /* IdeasTableViewCell.swift in Sources */,
 				82EDDF1024D3268200F42688 /* AppDelegate.swift in Sources */,
 				82A11E7524D5D57700BB129D /* SignInViewController.swift in Sources */,
+				821CC9B624EA6FA9006689F6 /* Comment.swift in Sources */,
 				82EDDF0F24D3267600F42688 /* Enhance_Ideas.xcdatamodeld in Sources */,
 				821CC9AC24E8C709006689F6 /* FirestoreManagement.swift in Sources */,
+				821CC9B424EA0053006689F6 /* IdeaDetailViewController.swift in Sources */,
 				821CC9AA24E89ACB006689F6 /* SubmitIdeaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

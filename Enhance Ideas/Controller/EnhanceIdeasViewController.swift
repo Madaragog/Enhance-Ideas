@@ -13,20 +13,22 @@ class EnhanceIdeasViewController: UIViewController {
     @IBOutlet weak var enhanceIdeasTableView: UITableView!
     @IBOutlet weak var addIdeaButton: UIButton!
 
+    var idea: Idea?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        readFireStoreData()
+        readFireStoreIdeasData()
         addIdeaButton.setThemeImage(darkThemeImg: "addIdeaReversedColors", lightThemeImg: "addIdea")
         handleNotifications()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        readFireStoreData()
+        readFireStoreIdeasData()
     }
 
     private func handleNotifications() {
-        notificationsToReceive()
+        ideasNotificationsToReceive()
         let reloadTableViewNotifName = Notification.Name(rawValue: "reloadingTableView")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadTableView),
@@ -37,29 +39,6 @@ class EnhanceIdeasViewController: UIViewController {
     @objc private func reloadTableView() {
         enhanceIdeasTableView.reloadData()
     }
-
-/*
-     private func handleNotification() {
-         let dataReceivedNotifName = Notification.Name(rawValue: "dataReceived")
-         NotificationCenter.default.addObserver(self,
-                                                selector: #selector(reloadTableViewData),
-                                                name: dataReceivedNotifName,
-                                                object: nil)
-         let ideaSubmitedNotifName = Notification.Name(rawValue: "IdeaSubmited")
-         NotificationCenter.default.addObserver(self,
-                                                selector: #selector(readFireStoreData),
-                                                name: ideaSubmitedNotifName,
-                                                object: nil)
-     }
-
-     @objc private func readFireStoreData() {
-         FirestoreManagement.shared.readFirestoreData()
-     }
-
-     @objc private func reloadTableViewData() {
-         enhanceIdeasTableView.reloadData()
-     }
-     */
 }
 
 extension EnhanceIdeasViewController: UITableViewDataSource, UITableViewDelegate {
@@ -84,24 +63,40 @@ extension EnhanceIdeasViewController: UITableViewDataSource, UITableViewDelegate
 
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let cell = tableView.cellForRow(at: indexPath) as? IdeasTableViewCell else {
+             return
+         }
+        idea = cell.ideaGivenToCell
+        self.performSegue(withIdentifier: "IdeaToEnhanceDetailSegue", sender: nil)
+    }
+// swiftlint:disable force_cast
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "IdeaToEnhanceDetailSegue" {
+            let destinationVC = segue.destination as! IdeaDetailViewController
+            if let idea = self.idea {
+                destinationVC.idea = idea
+            }
+        }
+    }
 }
 
 extension UIViewController {
-    func notificationsToReceive() {
+    func ideasNotificationsToReceive() {
         let dataReceivedNotifName = Notification.Name(rawValue: "dataReceived")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadTableViewData),
                                                name: dataReceivedNotifName,
                                                object: nil)
-        let ideaSubmitedNotifName = Notification.Name(rawValue: "IdeaSubmited")
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(readFireStoreData),
-                                               name: ideaSubmitedNotifName,
-                                               object: nil)
     }
 
-    @objc func readFireStoreData() {
-        FirestoreManagement.shared.readFirestoreData()
+    @objc func readFireStoreIdeasData() {
+        FirestoreManagement.shared.readFirestoreIdeasData()
+    }
+
+    @objc func readFireStoreCommentsData() {
+        FirestoreManagement.shared.readFirestoreCommentsData()
     }
 
     @objc public func reloadTableViewData() {

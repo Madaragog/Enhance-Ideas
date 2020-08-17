@@ -31,9 +31,9 @@ class SubmitIdeaViewController: UIViewController {
 
     @IBAction func didPressSubmitButton(_ sender: Any) {
         if let idea = ideaTextView.text, idea != "" {
-            FirestoreManagement.shared.uploadFirestoreData(idea: idea)
+            FirestoreManagement.shared.uploadIdeaFirestoreData(idea: idea)
             dismiss(animated: true, completion: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "IdeaSubmited"), object: nil)
+            readFireStoreIdeasData()
         } else {
             ideaTextView.text = "Please write something"
         }

@@ -11,6 +11,8 @@ import UIKit
 class EnhancedIdeasViewController: UIViewController {
     @IBOutlet weak var enhancedIdeasTableView: UITableView!
 
+    var idea: Idea?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         handleNotifications()
@@ -18,11 +20,11 @@ class EnhancedIdeasViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        readFireStoreData()
+        readFireStoreIdeasData()
     }
 
     private func handleNotifications() {
-        notificationsToReceive()
+        ideasNotificationsToReceive()
         let reloadTableViewNotifName = Notification.Name(rawValue: "reloadingTableView")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadTableView),
@@ -56,5 +58,22 @@ extension EnhancedIdeasViewController: UITableViewDataSource, UITableViewDelegat
         cell.configure(idea: idea)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let cell = tableView.cellForRow(at: indexPath) as? IdeasTableViewCell else {
+             return
+         }
+        idea = cell.ideaGivenToCell
+        self.performSegue(withIdentifier: "EnhancedIdeaDetailSegue", sender: nil)
+    }
+// swiftlint:disable force_cast
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EnhancedIdeaDetailSegue" {
+            let destinationVC = segue.destination as! IdeaDetailViewController
+            if let idea = self.idea {
+                destinationVC.idea = idea
+            }
+        }
     }
 }
