@@ -15,6 +15,7 @@ class EnhancedIdeasViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        enhancedIdeasTableView.rowHeight = UITableView.automaticDimension
         handleNotifications()
     }
 

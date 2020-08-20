@@ -38,7 +38,6 @@ class FirestoreManagement {
                                                     isCompleted: isCompleted))
                     self.handleIdeas(ideas: ideas)
                 }
-
             }
         }
     }
@@ -54,12 +53,12 @@ class FirestoreManagement {
                     let ideaID = document["ideaID"] as? String ?? ""
                     let noSpaceIdeaID = ideaID.replacingOccurrences(of: " ", with: "")
                     var comments: [Comment] = []
-                    comments.append(Comment(ideaID: noSpaceIdeaID,
-                                                    author: author,
-                                                    comment: comment))
+                    comments.append(Comment(commentID: document.documentID,
+                                            ideaID: noSpaceIdeaID,
+                                            author: author,
+                                            comment: comment))
                     self.handleComments(comments: comments)
                 }
-
             }
         }
     }
@@ -109,26 +108,42 @@ class FirestoreManagement {
         }
     }
 
-    private func handleIdeas(ideas: [Idea]) {
-        for idea in ideas {
-            if idea.isCompleted == false {
-                if ideasToEnhance.contains(idea) == false {
-                    ideasToEnhance.insert(idea, at: 0)
-                }
+    public func updateComment(comment: Comment) {
+//        if ideaComments.contains(comment) {
+//            let comments = ideaComments.filter { $0 != comment }
+//            ideaComments = comments
+//        }
+        let ref = db.collection("comments").document(comment.commentID)
+        ref.updateData([
+            "comment": "\(comment.comment)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
             } else {
-                if enhancedIdeas.contains(idea) == false {
-                    enhancedIdeas.insert(idea, at: 0)
-                }
+                print("Document successfully updated")
+                self.ideaComments.removeAll()
+                self.readFirestoreCommentsData()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentModified"), object: nil)
             }
+        }
+    }
+
+    private func handleIdeas(ideas: [Idea]) {
+        let uncompletedIdeas = ideas.filter { $0.isCompleted == false }
+        let completedIdeas = ideas.filter { $0.isCompleted == true }
+
+        for uncompleteIdea in uncompletedIdeas where ideasToEnhance.contains(uncompleteIdea) == false {
+            ideasToEnhance.insert(uncompleteIdea, at: 0)
+        }
+        for completedIdea in completedIdeas where enhancedIdeas.contains(completedIdea) == false {
+            enhancedIdeas.insert(completedIdea, at: 0)
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataReceived"), object: nil)
     }
 
     private func handleComments(comments: [Comment]) {
-        for comment in comments {
-            if ideaComments.contains(comment) == false {
-                ideaComments.insert(comment, at: 0)
-            }
+        for comment in comments where ideaComments.contains(comment) == false {
+            ideaComments.insert(comment, at: 0)
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentsReceived"), object: nil)
     }

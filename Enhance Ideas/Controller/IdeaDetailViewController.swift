@@ -19,15 +19,28 @@ class IdeaDetailViewController: UIViewController {
     @IBOutlet weak var ideaView: UIView!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
 
     var idea: Idea?
+    var bottomConstraint: NSLayoutConstraint?
+    var commentToSend: Comment?
+    var cellIndexPath: IndexPath?
+
     private var comments: [Comment] = []
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        readFireStoreCommentsData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        handleNotification()
-        readFireStoreCommentsData()
+        handleNotifications()
+    }
+
+    @IBAction func dissmissKeyboard(_ sender: UITapGestureRecognizer) {
+        commentTextField.resignFirstResponder()
     }
 
     @IBAction func pressedCancelButton() {
@@ -55,10 +68,7 @@ class IdeaDetailViewController: UIViewController {
     }
 
     private func configure() {
-        NotificationCenter.default.addObserver(self,
-        selector: #selector(handle(keyboardShowNotification:)),
-        name: UIResponder.keyboardDidShowNotification,
-        object: nil)
+        commentsTableView.rowHeight = UITableView.automaticDimension
         detailTopView.addShadow(yValue: 45, height: 5, color: #colorLiteral(red: 0.8084151745, green: 0.4952875972, blue: 0.3958609998, alpha: 1))
         ideaView.addViewBorder(borderColor: #colorLiteral(red: 0.7943204045, green: 0.6480303407, blue: 0.4752466083, alpha: 1), borderWith: 1.0, borderCornerRadius: 4)
         commentView.addBorder(borderCornerRadius: 16)
@@ -74,11 +84,54 @@ class IdeaDetailViewController: UIViewController {
         }
     }
 
-    private func handleNotification() {
+    @objc private func handleKeyboardWillShowNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+            guard keyboardFrame != nil && commentView != nil && view != nil else {
+                return
+            }
+            let constant = keyboardFrame!.height + 4
+            bottomConstraint = NSLayoutConstraint(item: view!,
+                                                      attribute: .bottom,
+                                                      relatedBy: .equal,
+                                                      toItem: commentView,
+                                                      attribute: .bottom,
+                                                      multiplier: 1,
+                                                      constant: constant)
+            guard bottomConstraint != nil else {
+                return
+            }
+            view.addConstraint(bottomConstraint!)
+            commentsTableView.addGestureRecognizer(tapGestureRecognizer)
+        }
+    }
+
+    @objc private func handleKeyboardWillHideNotification(notification: NSNotification) {
+        guard bottomConstraint != nil else {
+            return
+        }
+        view.removeConstraint(bottomConstraint!)
+        commentsTableView.removeGestureRecognizer(tapGestureRecognizer)
+    }
+
+    private func handleNotifications() {
         let commentsReceivedNotifName = Notification.Name(rawValue: "CommentsReceived")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(fetchIdeaComments),
                                                name: commentsReceivedNotifName,
+                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboardWillShowNotification),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboardWillHideNotification),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        let commentModifiedNotifName = Notification.Name(rawValue: "CommentModified")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(deleteOldComment),
+                                               name: commentModifiedNotifName,
                                                 object: nil)
     }
 
@@ -86,38 +139,21 @@ class IdeaDetailViewController: UIViewController {
         commentsTableView.reloadData()
     }
 
-    @objc
-    private func handle(keyboardShowNotification notification: Notification) {
-        if let userInfo = notification.userInfo,
-            let keyboardRectangle = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-
-            guard let commentView = self.commentView, let view = self.view else {
-                return
-            }
-            let constant = keyboardRectangle.height + 4
-            let bottomConstraint = NSLayoutConstraint(item: view,
-                                                      attribute: .bottom,
-                                                      relatedBy: .equal,
-                                                      toItem: commentView,
-                                                      attribute: .bottom,
-                                                      multiplier: 1,
-                                                      constant: constant)
-            self.view.addConstraint(bottomConstraint)
+    @objc func deleteOldComment() {
+        guard let cellIndexPath = cellIndexPath else {
+            return
         }
+        comments.remove(at: cellIndexPath.row)
+        reloadTableView()
     }
 
     @objc private func fetchIdeaComments() {
         guard let idea = idea else {
             return
         }
-        for comment in FirestoreManagement.shared.ideaComments {
-            print("4 \(idea.documentID)")
-            print("5 \(comment.ideaID)")
-            if comment.ideaID == idea.documentID {
-                if self.comments.contains(comment) == false {
-                    self.comments.insert(comment, at: 0)
-                }
-            }
+        for comment in FirestoreManagement.shared.ideaComments where
+            comment.ideaID == idea.documentID && self.comments.contains(comment) == false {
+                self.comments.insert(comment, at: 0)
         }
         reloadTableView()
     }
@@ -142,5 +178,27 @@ extension IdeaDetailViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configureComment(comment: comment)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if commentTextField.isFirstResponder {
+            commentTextField.resignFirstResponder()
+        }
+        guard let cell = tableView.cellForRow(at: indexPath) as? IdeasTableViewCell else {
+            return
+        }
+            print("124")
+        commentToSend = cell.commentGivenToCell
+        cellIndexPath = indexPath
+        self.performSegue(withIdentifier: "CommentDetailSegue", sender: nil)
+    }
+// swiftlint:disable force_cast
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentDetailSegue" {
+            let destinationVC = segue.destination as! SubmitIdeaViewController
+            if let commentToSend = self.commentToSend {
+                destinationVC.comment = commentToSend
+            }
+        }
     }
 }

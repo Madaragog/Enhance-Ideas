@@ -17,6 +17,7 @@ class EnhanceIdeasViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        enhanceIdeasTableView.rowHeight = UITableView.automaticDimension
         readFireStoreIdeasData()
         addIdeaButton.setThemeImage(darkThemeImg: "addIdeaReversedColors", lightThemeImg: "addIdea")
         handleNotifications()
