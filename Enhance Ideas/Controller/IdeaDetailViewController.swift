@@ -19,7 +19,8 @@ class IdeaDetailViewController: UIViewController {
     @IBOutlet weak var ideaView: UIView!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var commentsTableView: UITableView!
-    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var tableViewTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var ideaTapGestureRecognizer: UITapGestureRecognizer!
 
     var idea: Idea?
     var bottomConstraint: NSLayoutConstraint?
@@ -41,6 +42,10 @@ class IdeaDetailViewController: UIViewController {
 
     @IBAction func dissmissKeyboard(_ sender: UITapGestureRecognizer) {
         commentTextField.resignFirstResponder()
+    }
+
+    @IBAction func authorDidPressIdea(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "IdeaDetailSegue", sender: nil)
     }
 
     @IBAction func pressedCancelButton() {
@@ -81,6 +86,9 @@ class IdeaDetailViewController: UIViewController {
             } else {
                 enhancedButton.addBorder(borderCornerRadius: 14)
             }
+            if idea.author == FirestoreManagement.shared.googleUser && idea.isCompleted == false {
+                ideaTextView.addGestureRecognizer(ideaTapGestureRecognizer)
+            }
         }
     }
 
@@ -102,7 +110,7 @@ class IdeaDetailViewController: UIViewController {
                 return
             }
             view.addConstraint(bottomConstraint!)
-            commentsTableView.addGestureRecognizer(tapGestureRecognizer)
+            commentsTableView.addGestureRecognizer(tableViewTapGestureRecognizer)
         }
     }
 
@@ -111,7 +119,7 @@ class IdeaDetailViewController: UIViewController {
             return
         }
         view.removeConstraint(bottomConstraint!)
-        commentsTableView.removeGestureRecognizer(tapGestureRecognizer)
+        commentsTableView.removeGestureRecognizer(tableViewTapGestureRecognizer)
     }
 
     private func handleNotifications() {
@@ -198,6 +206,12 @@ extension IdeaDetailViewController: UITableViewDataSource, UITableViewDelegate {
             let destinationVC = segue.destination as! SubmitIdeaViewController
             if let commentToSend = self.commentToSend {
                 destinationVC.comment = commentToSend
+            }
+        } else if segue.identifier == "IdeaDetailSegue" {
+            let destinationVC = segue.destination as! SubmitIdeaViewController
+            if let ideaToSend = self.idea {
+                destinationVC.idea = ideaToSend
+                destinationVC.ideaComments = self.comments
             }
         }
     }

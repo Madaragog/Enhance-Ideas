@@ -28,6 +28,9 @@ class EnhanceIdeasViewController: UIViewController {
         readFireStoreIdeasData()
     }
 
+    @IBAction func unwindToEnhancedIdeas(segue: UIStoryboardSegue) { readFireStoreIdeasData()
+    }
+
     private func handleNotifications() {
         ideasNotificationsToReceive()
         let reloadTableViewNotifName = Notification.Name(rawValue: "reloadingTableView")

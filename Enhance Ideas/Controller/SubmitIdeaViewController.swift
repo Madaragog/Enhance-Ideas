@@ -13,15 +13,20 @@ class SubmitIdeaViewController: UIViewController {
     @IBOutlet weak var submitIdeaButton: UIButton!
     @IBOutlet weak var submitIdeaTopView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var modifyButton: UIButton!
+    @IBOutlet weak var deleteCommentButton: UIButton!
+    @IBOutlet weak var modifyCommentButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var deleteIdeaButton: UIButton!
+    @IBOutlet weak var modifyIdeaButton: UIButton!
 
     var comment: Comment?
+    var idea: Idea?
+    var ideaComments: [Comment] = []
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        setForDisplayingCommentDetail()
+        setDisplayForCommentDetail()
+        setDisplayForIdeaDetail()
     }
 
     override func viewDidLoad() {
@@ -47,7 +52,7 @@ class SubmitIdeaViewController: UIViewController {
         }
     }
 
-    @IBAction func didPressModifyButton() {
+    @IBAction func didPressModifyCommentButton() {
         if let commentText = ideaTextView.text, commentText != "" {
             guard var comment = comment else {
                 return
@@ -55,19 +60,39 @@ class SubmitIdeaViewController: UIViewController {
             comment.comment = commentText
             FirestoreManagement.shared.updateComment(comment: comment)
             dismiss(animated: true, completion: nil)
-            readFireStoreIdeasData()
         } else {
             ideaTextView.text = "Please write something"
         }
     }
 
-    @IBAction func didPressDeleteButton() {
+    @IBAction func didPressModifyIdeaButton() {
+        if let ideaText = ideaTextView.text, ideaText != ""{
+            guard var idea = idea else {
+                return
+            }
+            idea.idea = ideaText
+            FirestoreManagement.shared.updateIdea(idea: idea)
+        } else {
+            ideaTextView.text = "Please write something"
+        }
+    }
+
+    @IBAction func didPressDeleteCommentButton() {
         guard let comment = comment else {
             return
         }
         FirestoreManagement.shared.deleteComment(comment: comment)
         dismiss(animated: true, completion: nil)
-        readFireStoreIdeasData()
+    }
+
+    @IBAction func didPressDeleteIdeaButton() {
+        guard let idea = idea else {
+            return
+        }
+        FirestoreManagement.shared.deleteIdea(idea: idea)
+        for comment in ideaComments {
+            FirestoreManagement.shared.deleteComment(comment: comment)
+        }
     }
 
     private func handleNotification() {
@@ -77,22 +102,35 @@ class SubmitIdeaViewController: UIViewController {
         object: nil)
     }
 
-    @objc private func setForDisplayingCommentDetail() {
+    private func setDisplayForCommentDetail() {
         guard let comment = self.comment else {
             return
         }
         submitIdeaButton.isHidden = true
         cancelButton.addViewBorder(borderColor: #colorLiteral(red: 0.7943204045, green: 0.6480303407, blue: 0.4752466083, alpha: 1), borderWith: 1.0, borderCornerRadius: 16)
-        titleLabel.text = "\(comment.author)'s idea !"
+        titleLabel.text = "\(comment.author)'s comment !"
         ideaTextView.text = comment.comment
         if comment.author == FirestoreManagement.shared.googleUser {
-            deleteButton.isHidden = false
-            modifyButton.isHidden = false
-            modifyButton.addBorder(borderCornerRadius: 16)
+            deleteCommentButton.isHidden = false
+            modifyCommentButton.isHidden = false
+            modifyCommentButton.addBorder(borderCornerRadius: 16)
         } else {
             ideaTextView.resignFirstResponder()
             ideaTextView.isUserInteractionEnabled = false
         }
+    }
+
+    private func setDisplayForIdeaDetail() {
+        guard let idea = self.idea else {
+            return
+        }
+        submitIdeaButton.isHidden = true
+        cancelButton.addViewBorder(borderColor: #colorLiteral(red: 0.7943204045, green: 0.6480303407, blue: 0.4752466083, alpha: 1), borderWith: 1.0, borderCornerRadius: 16)
+        titleLabel.text = "\(idea.author)'s idea !"
+        ideaTextView.text = idea.idea
+        deleteIdeaButton.isHidden = false
+        modifyIdeaButton.isHidden = false
+        modifyIdeaButton.addBorder(borderCornerRadius: 16)
     }
 
     @objc

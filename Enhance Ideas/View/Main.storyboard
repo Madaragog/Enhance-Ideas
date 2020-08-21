@@ -416,10 +416,11 @@
                         <outlet property="commentsTableView" destination="XCq-7e-0H5" id="hI9-2O-4nk"/>
                         <outlet property="detailTopView" destination="Yjs-3i-CW7" id="czd-2H-fdX"/>
                         <outlet property="enhancedButton" destination="JdH-qs-lqk" id="qzU-st-gfq"/>
+                        <outlet property="ideaTapGestureRecognizer" destination="fiz-Fg-HWD" id="5qI-RL-Mjt"/>
                         <outlet property="ideaTextView" destination="Bck-wX-5Yq" id="Bgf-Ot-CEh"/>
                         <outlet property="ideaView" destination="YY2-o5-XBg" id="EnO-ef-MGZ"/>
                         <outlet property="submitButton" destination="rcp-v2-0re" id="ZDZ-ja-UMC"/>
-                        <outlet property="tapGestureRecognizer" destination="5ik-s5-05t" id="z66-4y-yyB"/>
+                        <outlet property="tableViewTapGestureRecognizer" destination="5ik-s5-05t" id="z66-4y-yyB"/>
                         <segue destination="QMX-cR-mWB" kind="presentation" identifier="CommentDetailSegue" id="OO8-gY-h9o"/>
                     </connections>
                 </viewController>
@@ -427,6 +428,12 @@
                 <tapGestureRecognizer id="5ik-s5-05t">
                     <connections>
                         <action selector="dissmissKeyboard:" destination="Nu6-AP-Xfd" id="Zfb-od-bNS"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="fiz-Fg-HWD">
+                    <connections>
+                        <action selector="authorDidPressIdea:" destination="Nu6-AP-Xfd" id="WZH-Q3-MdI"/>
+                        <segue destination="QMX-cR-mWB" kind="presentation" identifier="IdeaDetailSegue" id="aJy-Dg-ZAS"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -497,7 +504,21 @@
                                             <color key="titleColor" red="0.67843137254901964" green="0.14901960784313725" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="didPressDeleteButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="e4V-eQ-3nY"/>
+                                            <action selector="didPressDeleteCommentButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="e4V-eQ-3nY"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWM-Xp-Eip">
+                                        <rect key="frame" x="172" y="8" width="70" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="tWM-Xp-Eip" secondAttribute="height" multiplier="35:17" id="u7t-it-dSX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="16"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" red="0.67843137249999996" green="0.14901960780000001" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didPressDeleteIdeaButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="1cZ-FG-N2h"/>
+                                            <segue destination="LIK-Hf-XD5" kind="unwind" unwindAction="unwindToEnhancedIdeasWithSegue:" id="22D-BF-YLL"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etY-sk-af8">
@@ -511,23 +532,44 @@
                                             <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="didPressModifyButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="LWD-UX-Eik"/>
+                                            <action selector="didPressModifyCommentButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="LWD-UX-Eik"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSW-IJ-P4b">
+                                        <rect key="frame" x="336" y="8" width="70" height="34"/>
+                                        <color key="backgroundColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vSW-IJ-P4b" secondAttribute="height" multiplier="35:17" id="vi8-5J-72o"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="16"/>
+                                        <state key="normal" title="Modify">
+                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didPressModifyIdeaButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="sOL-Tu-Ok4"/>
+                                            <segue destination="LIK-Hf-XD5" kind="unwind" unwindAction="unwindToEnhancedIdeasWithSegue:" id="TRo-8M-SqW"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="tWM-Xp-Eip" firstAttribute="centerX" secondItem="xHu-JO-wYd" secondAttribute="centerX" id="0y9-Df-Mz8"/>
                                     <constraint firstAttribute="bottom" secondItem="9Ol-p4-cZV" secondAttribute="bottom" constant="6" id="4oI-cW-7pk"/>
+                                    <constraint firstAttribute="bottom" secondItem="tWM-Xp-Eip" secondAttribute="bottom" constant="6" id="6rK-8x-ghw"/>
+                                    <constraint firstAttribute="bottom" secondItem="vSW-IJ-P4b" secondAttribute="bottom" constant="6" id="HS7-1A-aPD"/>
                                     <constraint firstAttribute="bottom" secondItem="etY-sk-af8" secondAttribute="bottom" constant="6" id="Iyn-se-swX"/>
                                     <constraint firstAttribute="bottom" secondItem="dcr-06-L2s" secondAttribute="bottom" constant="6" id="KAg-yY-s7b"/>
                                     <constraint firstAttribute="bottom" secondItem="4R5-ht-BR8" secondAttribute="bottom" constant="6" id="LX5-uB-ECy"/>
+                                    <constraint firstItem="vSW-IJ-P4b" firstAttribute="top" secondItem="xHu-JO-wYd" secondAttribute="top" constant="8" id="PDk-aB-xbr"/>
                                     <constraint firstItem="9Ol-p4-cZV" firstAttribute="top" secondItem="xHu-JO-wYd" secondAttribute="top" constant="8" id="Rih-rd-bxk"/>
                                     <constraint firstAttribute="trailing" secondItem="etY-sk-af8" secondAttribute="trailing" constant="8" id="SKF-ie-PMi"/>
                                     <constraint firstAttribute="trailing" secondItem="4R5-ht-BR8" secondAttribute="trailing" constant="8" id="Uag-Oc-QbQ"/>
                                     <constraint firstItem="dcr-06-L2s" firstAttribute="top" secondItem="xHu-JO-wYd" secondAttribute="top" constant="8" id="VEI-T0-DTw"/>
                                     <constraint firstItem="etY-sk-af8" firstAttribute="top" secondItem="xHu-JO-wYd" secondAttribute="top" constant="8" id="Yv3-Yn-CYl"/>
                                     <constraint firstItem="9Ol-p4-cZV" firstAttribute="leading" secondItem="xHu-JO-wYd" secondAttribute="leading" constant="8" id="ZiE-Ur-3xJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="vSW-IJ-P4b" secondAttribute="trailing" constant="8" id="gpR-MF-6xj"/>
                                     <constraint firstItem="4R5-ht-BR8" firstAttribute="top" secondItem="xHu-JO-wYd" secondAttribute="top" constant="8" id="kZu-mZ-eb1"/>
+                                    <constraint firstItem="tWM-Xp-Eip" firstAttribute="top" secondItem="xHu-JO-wYd" secondAttribute="top" constant="8" id="phQ-vi-sxW"/>
                                     <constraint firstItem="dcr-06-L2s" firstAttribute="centerX" secondItem="xHu-JO-wYd" secondAttribute="centerX" id="zbC-sU-pJd"/>
                                 </constraints>
                             </view>
@@ -551,15 +593,18 @@
                     <navigationItem key="navigationItem" id="UYE-50-ZEs"/>
                     <connections>
                         <outlet property="cancelButton" destination="9Ol-p4-cZV" id="0bx-kS-CuI"/>
-                        <outlet property="deleteButton" destination="dcr-06-L2s" id="cjd-9b-UQL"/>
+                        <outlet property="deleteCommentButton" destination="dcr-06-L2s" id="cjd-9b-UQL"/>
+                        <outlet property="deleteIdeaButton" destination="tWM-Xp-Eip" id="S71-4T-QtR"/>
                         <outlet property="ideaTextView" destination="yn3-mC-up1" id="LNp-pM-bdK"/>
-                        <outlet property="modifyButton" destination="etY-sk-af8" id="Xbp-VJ-Oc2"/>
+                        <outlet property="modifyCommentButton" destination="etY-sk-af8" id="Xbp-VJ-Oc2"/>
+                        <outlet property="modifyIdeaButton" destination="vSW-IJ-P4b" id="1ne-Ut-y1a"/>
                         <outlet property="submitIdeaButton" destination="4R5-ht-BR8" id="dLT-ob-5vs"/>
                         <outlet property="submitIdeaTopView" destination="xHu-JO-wYd" id="YDV-RS-Qi5"/>
                         <outlet property="titleLabel" destination="aLR-fs-gx3" id="ouS-MD-wci"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCz-8t-qYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="LIK-Hf-XD5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="43.125" y="-855.63380281690138"/>
         </scene>
@@ -676,8 +721,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OO8-gY-h9o"/>
-        <segue reference="wbY-E7-pdG"/>
+        <segue reference="Hjr-5Y-WSo"/>
+        <segue reference="1lx-5w-JLq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addIdea" width="25" height="25"/>

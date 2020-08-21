@@ -108,6 +108,20 @@ class FirestoreManagement {
         }
     }
 
+    public func updateIdea(idea: Idea) {
+        ideasToEnhance.removeAll()
+        let ref = db.collection("ideasToEnhance").document(idea.documentID)
+        ref.updateData([
+            "idea": "\(idea.idea)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+
     public func updateComment(comment: Comment) {
         let ref = db.collection("comments").document(comment.commentID)
         ref.updateData([
@@ -133,6 +147,17 @@ class FirestoreManagement {
                 self.ideaComments.removeAll()
                 self.readFirestoreCommentsData()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentModified"), object: nil)
+            }
+        }
+    }
+
+    public func deleteIdea(idea: Idea) {
+        ideasToEnhance.removeAll()
+        db.collection("ideasToEnhance").document(idea.documentID).delete { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
             }
         }
     }
