@@ -61,6 +61,15 @@ class SubmitIdeaViewController: UIViewController {
         }
     }
 
+    @IBAction func didPressDeleteButton() {
+        guard let comment = comment else {
+            return
+        }
+        FirestoreManagement.shared.deleteComment(comment: comment)
+        dismiss(animated: true, completion: nil)
+        readFireStoreIdeasData()
+    }
+
     private func handleNotification() {
         NotificationCenter.default.addObserver(self,
         selector: #selector(handle(keyboardShowNotification:)),

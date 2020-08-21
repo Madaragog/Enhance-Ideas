@@ -496,6 +496,9 @@
                                         <state key="normal" title="Delete">
                                             <color key="titleColor" red="0.67843137254901964" green="0.14901960784313725" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressDeleteButton" destination="QMX-cR-mWB" eventType="touchUpInside" id="e4V-eQ-3nY"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etY-sk-af8">
                                         <rect key="frame" x="336" y="8" width="70" height="34"/>
