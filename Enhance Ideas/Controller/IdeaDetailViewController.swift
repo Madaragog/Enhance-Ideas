@@ -21,6 +21,8 @@ class IdeaDetailViewController: UIViewController {
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var tableViewTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var ideaTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var submitButtonTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var authorProfilePicImageView: UIImageView!
 
     var idea: Idea?
     var bottomConstraint: NSLayoutConstraint?
@@ -42,6 +44,11 @@ class IdeaDetailViewController: UIViewController {
 
     @IBAction func dissmissKeyboard(_ sender: UITapGestureRecognizer) {
         commentTextField.resignFirstResponder()
+    }
+
+    @IBAction func dissmissKeyboardAndSubmit(_ sender: UITapGestureRecognizer) {
+        commentTextField.resignFirstResponder()
+        didPressSubmitButton()
     }
 
     @IBAction func authorDidPressIdea(_ sender: UITapGestureRecognizer) {
@@ -73,6 +80,11 @@ class IdeaDetailViewController: UIViewController {
     }
 
     private func configure() {
+        authorProfilePicImageView.addViewBorder(borderColor: #colorLiteral(red: 0.8084151745, green: 0.4952875972, blue: 0.3958609998, alpha: 1), borderWith: 1.0, borderCornerRadius: 11)
+        if let authorEmail = idea?.authorEmail {
+            FirestoreManagement.shared.downloadProfilePicture(uIImageView: authorProfilePicImageView,
+                                                              userEmail: authorEmail)
+        }
         commentsTableView.rowHeight = UITableView.automaticDimension
         detailTopView.addShadow(yValue: 45, height: 5, color: #colorLiteral(red: 0.8084151745, green: 0.4952875972, blue: 0.3958609998, alpha: 1))
         ideaView.addViewBorder(borderColor: #colorLiteral(red: 0.7943204045, green: 0.6480303407, blue: 0.4752466083, alpha: 1), borderWith: 1.0, borderCornerRadius: 4)
@@ -111,6 +123,7 @@ class IdeaDetailViewController: UIViewController {
             }
             view.addConstraint(bottomConstraint!)
             commentsTableView.addGestureRecognizer(tableViewTapGestureRecognizer)
+            submitButton.addGestureRecognizer(submitButtonTapGestureRecognizer)
         }
     }
 
@@ -120,6 +133,7 @@ class IdeaDetailViewController: UIViewController {
         }
         view.removeConstraint(bottomConstraint!)
         commentsTableView.removeGestureRecognizer(tableViewTapGestureRecognizer)
+        submitButton.removeGestureRecognizer(submitButtonTapGestureRecognizer)
     }
 
     private func handleNotifications() {

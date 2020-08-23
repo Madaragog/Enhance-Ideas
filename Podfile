@@ -11,4 +11,7 @@ target 'Enhance Ideas' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
+  pod 'Kingfisher'
 end

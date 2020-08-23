@@ -33,6 +33,8 @@ class SignInViewController: UIViewController {
         GIDSignIn.sharedInstance()?.signIn()
     }
 
+    @IBAction func unwindToSignInPage(segue: UIStoryboardSegue) { }
+
     @objc private func performSegueIfCurrentUserIsNotEmpty() {
         if GIDSignIn.sharedInstance()?.currentUser != nil {
             performSegue(withIdentifier: "SuccessSignInSegue", sender: nil)

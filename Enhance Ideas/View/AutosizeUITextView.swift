@@ -9,7 +9,7 @@
 import UIKit
 
 class AutosizeUITextView: UITextView {
-    var maximalSizeNotScrollable: CGFloat = 200
+    var maximalSizeNotScrollable: CGFloat = 155
     var minimumHeightTextView: CGFloat = 35
 
     var textViewHeightAnchor: NSLayoutConstraint!

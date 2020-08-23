@@ -13,4 +13,5 @@ struct Idea: Equatable {
     var author = ""
     var idea = ""
     var isCompleted = false
+    var authorEmail = ""
 }

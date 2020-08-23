@@ -101,6 +101,7 @@ extension AppDelegate: GIDSignInDelegate {
         NotificationCenter.default.post(name:
         NSNotification.Name("performSuccessSignInSegue"), object: nil)
         FirestoreManagement.shared.googleUser = user.profile.name
+        FirestoreManagement.shared.userEmail = user.profile.email
         /*
             MAYBE THE FOLLOWING ISN'T WORKING NOW THAT I'M CONNECTED TO FIREBASE WITH SIGN-IN WITH GOOGLE
         // Perform any operations on signed in user here.

@@ -13,4 +13,5 @@ struct Comment: Equatable {
     var ideaID = ""
     var author = ""
     var comment = ""
+    var authorEmail = ""
 }

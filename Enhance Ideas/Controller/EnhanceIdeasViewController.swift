@@ -29,6 +29,7 @@ class EnhanceIdeasViewController: UIViewController {
     }
 
     @IBAction func unwindToEnhancedIdeas(segue: UIStoryboardSegue) { readFireStoreIdeasData()
+        reloadTableView()
     }
 
     private func handleNotifications() {
