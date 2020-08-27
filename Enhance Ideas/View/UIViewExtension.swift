@@ -29,7 +29,7 @@ extension UIView {
         layer.colors = [colorTop, colorBottom]
         self.layer.addSublayer(layer)
     }
-
+// changes the background color of a view depending on the device theme (dark or light mode) 
     public func setBackgroundForThemesMode() {
         if #available(iOS 12.0, *) {
             if traitCollection.userInterfaceStyle == .dark {

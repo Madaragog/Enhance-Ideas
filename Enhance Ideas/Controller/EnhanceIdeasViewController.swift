@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import Firebase
 
 class EnhanceIdeasViewController: UIViewController {
     @IBOutlet weak var enhanceIdeasTableView: UITableView!
@@ -27,7 +26,7 @@ class EnhanceIdeasViewController: UIViewController {
         super.viewWillAppear(true)
         readFireStoreIdeasData()
     }
-
+// goes back to EnhancedIdeas page
     @IBAction func unwindToEnhancedIdeas(segue: UIStoryboardSegue) { readFireStoreIdeasData()
         reloadTableView()
     }
@@ -77,6 +76,7 @@ extension EnhanceIdeasViewController: UITableViewDataSource, UITableViewDelegate
         self.performSegue(withIdentifier: "IdeaToEnhanceDetailSegue", sender: nil)
     }
 // swiftlint:disable force_cast
+//    transfers the idea to IdeaDetailViewController when the segue is performed
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "IdeaToEnhanceDetailSegue" {
             let destinationVC = segue.destination as! IdeaDetailViewController

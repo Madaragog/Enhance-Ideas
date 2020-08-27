@@ -37,11 +37,11 @@ class SubmitIdeaViewController: UIViewController {
         ideaTextView.becomeFirstResponder()
         handleNotification()
     }
-
+// dissmisses the controller
     @IBAction func didPressCancelButton() {
         dismiss(animated: true, completion: nil)
     }
-
+// submits the idea and then dissmiss the controller
     @IBAction func didPressSubmitButton(_ sender: Any) {
         if let idea = ideaTextView.text, idea != "" {
             FirestoreManagement.shared.uploadIdeaFirestoreData(idea: idea)
@@ -51,7 +51,7 @@ class SubmitIdeaViewController: UIViewController {
             ideaTextView.text = "Please write something"
         }
     }
-
+// modifies the comment then dissmisses the controller
     @IBAction func didPressModifyCommentButton() {
         if let commentText = ideaTextView.text, commentText != "" {
             guard var comment = comment else {
@@ -64,7 +64,7 @@ class SubmitIdeaViewController: UIViewController {
             ideaTextView.text = "Please write something"
         }
     }
-
+// modifies the idea then dissmisses the controller
     @IBAction func didPressModifyIdeaButton() {
         if let ideaText = ideaTextView.text, ideaText != ""{
             guard var idea = idea else {
@@ -76,7 +76,7 @@ class SubmitIdeaViewController: UIViewController {
             ideaTextView.text = "Please write something"
         }
     }
-
+// deletes the comment then dissmisses the controller
     @IBAction func didPressDeleteCommentButton() {
         guard let comment = comment else {
             return
@@ -84,7 +84,7 @@ class SubmitIdeaViewController: UIViewController {
         FirestoreManagement.shared.deleteComment(comment: comment)
         dismiss(animated: true, completion: nil)
     }
-
+// deletes the idea then dissmisses the controller
     @IBAction func didPressDeleteIdeaButton() {
         guard let idea = idea else {
             return
@@ -93,6 +93,7 @@ class SubmitIdeaViewController: UIViewController {
         for comment in ideaComments {
             FirestoreManagement.shared.deleteComment(comment: comment)
         }
+        dismiss(animated: true, completion: nil)
     }
 
     private func handleNotification() {
@@ -132,7 +133,7 @@ class SubmitIdeaViewController: UIViewController {
         modifyIdeaButton.isHidden = false
         modifyIdeaButton.addBorder(borderCornerRadius: 16)
     }
-
+// adapts the view when the keyboard is shown
     @objc
     private func handle(keyboardShowNotification notification: Notification) {
         if let userInfo = notification.userInfo,

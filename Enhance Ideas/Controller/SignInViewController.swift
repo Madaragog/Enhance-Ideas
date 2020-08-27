@@ -32,7 +32,7 @@ class SignInViewController: UIViewController {
     @IBAction func signInWithGoogleButton() {
         GIDSignIn.sharedInstance()?.signIn()
     }
-
+// goes back to the log in page after a user disconnected
     @IBAction func unwindToSignInPage(segue: UIStoryboardSegue) { }
 
     @objc private func performSegueIfCurrentUserIsNotEmpty() {

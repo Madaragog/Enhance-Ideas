@@ -13,7 +13,7 @@ class AutosizeUITextView: UITextView {
     var minimumHeightTextView: CGFloat = 35
 
     var textViewHeightAnchor: NSLayoutConstraint!
-
+// overrides contentSize so that the size of the textView autosizes
     override var contentSize: CGSize {
         didSet {
             if textViewHeightAnchor != nil {

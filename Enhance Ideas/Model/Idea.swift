@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// Idea Object
 struct Idea: Equatable {
     var documentID = ""
     var author = ""

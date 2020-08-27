@@ -22,26 +22,25 @@ class IdeasTableViewCell: UITableViewCell {
     var maximalSizeNotScrollable: CGFloat = 200
     var minimumHeightTextView: CGFloat = 35
     var textViewHeightAnchor: NSLayoutConstraint!
-
+    let pPDownloader = ProfilePictureViewDownloader()
+// sets the style of the cell
     override func awakeFromNib() {
         super.awakeFromNib()
         ideaTextAndAuthorView.addShadow(yValue: 0, height: 5, color: #colorLiteral(red: 0.8084151745, green: 0.4952875972, blue: 0.3958609998, alpha: 1))
         authorPPImageView.addViewBorder(borderColor: #colorLiteral(red: 0.7943204045, green: 0.6480303407, blue: 0.4752466083, alpha: 1), borderWith: 1.0, borderCornerRadius: 10)
     }
-
+// configures the cell if it has to display an idea
     func configure(idea: Idea) {
         ideaGivenToCell = idea
         author.text = idea.author
         self.idea.text = idea.idea
-        FirestoreManagement.shared.downloadProfilePicture(
-            uIImageView: authorPPImageView, userEmail: ideaGivenToCell.authorEmail)
+        pPDownloader.downloadProfilePicture(uIImageView: authorPPImageView, userEmail: idea.authorEmail)
     }
-
+    // configures the cell if it has to display an comment
     func configureComment(comment: Comment) {
         commentGivenToCell = comment
         commentAuthor.text = comment.author
         self.comment.text = comment.comment
-        FirestoreManagement.shared.downloadProfilePicture(
-            uIImageView: authorPPImageView, userEmail: commentGivenToCell.authorEmail)
+        pPDownloader.downloadProfilePicture(uIImageView: authorPPImageView, userEmail: comment.authorEmail)
     }
 }

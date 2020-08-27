@@ -13,5 +13,18 @@ target 'Enhance Ideas' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
-  pod 'Kingfisher'
+end
+
+target 'Enhance IdeasTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Enhance Ideas
+  pod 'GoogleSignIn'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
 end

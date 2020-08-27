@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E69DE86C0A391010558A840 /* Pods_Enhance_IdeasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23FCA50769AD2801BFC0815 /* Pods_Enhance_IdeasTests.framework */; };
 		3BC194ED918D4FCCB7E5BB8D /* Pods_Enhance_Ideas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55E38B32EE5504BEE698DB8 /* Pods_Enhance_Ideas.framework */; };
 		82170B7A24D9C20200D9870E /* EnhanceIdeasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82170B7924D9C20200D9870E /* EnhanceIdeasViewController.swift */; };
 		821CC9A624E603EA006689F6 /* Idea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9A524E603EA006689F6 /* Idea.swift */; };
@@ -17,13 +18,14 @@
 		821CC9B424EA0053006689F6 /* IdeaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9B324EA0052006689F6 /* IdeaDetailViewController.swift */; };
 		821CC9B624EA6FA9006689F6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821CC9B524EA6FA9006689F6 /* Comment.swift */; };
 		8240576B24DCF86000DF6591 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8240576A24DCF86000DF6591 /* GoogleService-Info.plist */; };
+		8276648A24F75E9F00513E9C /* ProfilePictureViewDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276648924F75E9F00513E9C /* ProfilePictureViewDownloader.swift */; };
 		827BD03824F06B78009D8C9D /* MySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BD03724F06B78009D8C9D /* MySettingsViewController.swift */; };
 		82A11E7524D5D57700BB129D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A11E7424D5D57700BB129D /* SignInViewController.swift */; };
 		82A11E7724D5EF8900BB129D /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A11E7624D5EF8900BB129D /* credentials.plist */; };
 		82AA0AEB24DF0FFD00FDDC25 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 82AA0AEA24DF0FFD00FDDC25 /* .swiftlint.yml */; };
+		82C8A3C224F312C000B9D169 /* Enhance_IdeasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C8A3C124F312C000B9D169 /* Enhance_IdeasTests.swift */; };
 		82D1D32D24EDF0980046E85D /* AutosizeUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1D32C24EDF0980046E85D /* AutosizeUITextView.swift */; };
 		82D1D32F24EE0A060046E85D /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1D32E24EE0A060046E85D /* UIButtonExtension.swift */; };
-		82EDDF0F24D3267600F42688 /* Enhance_Ideas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82EDDEFD24D324F100F42688 /* Enhance_Ideas.xcdatamodeld */; };
 		82EDDF1024D3268200F42688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EDDEF424D324F100F42688 /* AppDelegate.swift */; };
 		82EDDF1124D3268900F42688 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EDDEF624D324F100F42688 /* SceneDelegate.swift */; };
 		82EDDF1324D326E600F42688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82EDDF0024D324F200F42688 /* Assets.xcassets */; };
@@ -32,7 +34,19 @@
 		82EDDF1A24D32B9800F42688 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EDDF1924D32B9800F42688 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		82C8A3C424F312C000B9D169 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82EDDEE924D324F100F42688 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82EDDEF024D324F100F42688;
+			remoteInfo = "Enhance Ideas";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		03D0BBE576606EC6A6C377C3 /* Pods-Enhance IdeasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enhance IdeasTests.debug.xcconfig"; path = "Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2032BBC4263C795CE7CC95A1 /* Pods-Enhance IdeasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enhance IdeasTests.release.xcconfig"; path = "Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests.release.xcconfig"; sourceTree = "<group>"; };
 		82170B7924D9C20200D9870E /* EnhanceIdeasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhanceIdeasViewController.swift; sourceTree = "<group>"; };
 		821CC9A524E603EA006689F6 /* Idea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Idea.swift; sourceTree = "<group>"; };
 		821CC9A724E64234006689F6 /* IdeasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeasTableViewCell.swift; sourceTree = "<group>"; };
@@ -42,27 +56,39 @@
 		821CC9B324EA0052006689F6 /* IdeaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaDetailViewController.swift; sourceTree = "<group>"; };
 		821CC9B524EA6FA9006689F6 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8240576A24DCF86000DF6591 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8276648924F75E9F00513E9C /* ProfilePictureViewDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewDownloader.swift; sourceTree = "<group>"; };
 		827BD03724F06B78009D8C9D /* MySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySettingsViewController.swift; sourceTree = "<group>"; };
 		82A11E7424D5D57700BB129D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		82A11E7624D5EF8900BB129D /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		82AA0AEA24DF0FFD00FDDC25 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		82C8A3BF24F312C000B9D169 /* Enhance IdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Enhance IdeasTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82C8A3C124F312C000B9D169 /* Enhance_IdeasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enhance_IdeasTests.swift; sourceTree = "<group>"; };
+		82C8A3C324F312C000B9D169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82D1D32C24EDF0980046E85D /* AutosizeUITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizeUITextView.swift; sourceTree = "<group>"; };
 		82D1D32E24EE0A060046E85D /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		82EDDEF124D324F100F42688 /* Enhance Ideas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enhance Ideas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EDDEF424D324F100F42688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82EDDEF624D324F100F42688 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		82EDDEFE24D324F100F42688 /* Enhance_Ideas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Enhance_Ideas.xcdatamodel; sourceTree = "<group>"; };
 		82EDDF0024D324F200F42688 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82EDDF0524D324F200F42688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82EDDF1524D32A8A00F42688 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82EDDF1624D32A8A00F42688 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		82EDDF1924D32B9800F42688 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		A23FCA50769AD2801BFC0815 /* Pods_Enhance_IdeasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Enhance_IdeasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B55E38B32EE5504BEE698DB8 /* Pods_Enhance_Ideas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Enhance_Ideas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70161DED4F2C2F80B884F67 /* Pods-Enhance Ideas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enhance Ideas.release.xcconfig"; path = "Target Support Files/Pods-Enhance Ideas/Pods-Enhance Ideas.release.xcconfig"; sourceTree = "<group>"; };
 		FCC2429FDCA707D131E19C24 /* Pods-Enhance Ideas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enhance Ideas.debug.xcconfig"; path = "Target Support Files/Pods-Enhance Ideas/Pods-Enhance Ideas.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		82C8A3BC24F312C000B9D169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E69DE86C0A391010558A840 /* Pods_Enhance_IdeasTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82EDDEEE24D324F100F42688 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,8 +105,19 @@
 			children = (
 				FCC2429FDCA707D131E19C24 /* Pods-Enhance Ideas.debug.xcconfig */,
 				C70161DED4F2C2F80B884F67 /* Pods-Enhance Ideas.release.xcconfig */,
+				03D0BBE576606EC6A6C377C3 /* Pods-Enhance IdeasTests.debug.xcconfig */,
+				2032BBC4263C795CE7CC95A1 /* Pods-Enhance IdeasTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		82C8A3C024F312C000B9D169 /* Enhance IdeasTests */ = {
+			isa = PBXGroup;
+			children = (
+				82C8A3C124F312C000B9D169 /* Enhance_IdeasTests.swift */,
+				82C8A3C324F312C000B9D169 /* Info.plist */,
+			);
+			path = "Enhance IdeasTests";
 			sourceTree = "<group>";
 		};
 		82EDDEE824D324F100F42688 = {
@@ -90,6 +127,7 @@
 				8240576A24DCF86000DF6591 /* GoogleService-Info.plist */,
 				82AA0AEA24DF0FFD00FDDC25 /* .swiftlint.yml */,
 				82EDDEF324D324F100F42688 /* Enhance Ideas */,
+				82C8A3C024F312C000B9D169 /* Enhance IdeasTests */,
 				82EDDEF224D324F100F42688 /* Products */,
 				40D38CB3C96BCCEE2460C546 /* Pods */,
 				C3F82ADD531C3721339A9258 /* Frameworks */,
@@ -100,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				82EDDEF124D324F100F42688 /* Enhance Ideas.app */,
+				82C8A3BF24F312C000B9D169 /* Enhance IdeasTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,7 +150,6 @@
 				82EDDEF624D324F100F42688 /* SceneDelegate.swift */,
 				82EDDF0024D324F200F42688 /* Assets.xcassets */,
 				82EDDF0524D324F200F42688 /* Info.plist */,
-				82EDDEFD24D324F100F42688 /* Enhance_Ideas.xcdatamodeld */,
 				82EDDF0B24D3255900F42688 /* Model */,
 				82EDDF0C24D3255F00F42688 /* View */,
 				82EDDF0D24D3256400F42688 /* Controller */,
@@ -151,6 +189,7 @@
 				821CC9AF24E99C11006689F6 /* EnhancedIdeasViewController.swift */,
 				821CC9B324EA0052006689F6 /* IdeaDetailViewController.swift */,
 				827BD03724F06B78009D8C9D /* MySettingsViewController.swift */,
+				8276648924F75E9F00513E9C /* ProfilePictureViewDownloader.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -159,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				B55E38B32EE5504BEE698DB8 /* Pods_Enhance_Ideas.framework */,
+				A23FCA50769AD2801BFC0815 /* Pods_Enhance_IdeasTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,6 +206,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		82C8A3BE24F312C000B9D169 /* Enhance IdeasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82C8A3C624F312C000B9D169 /* Build configuration list for PBXNativeTarget "Enhance IdeasTests" */;
+			buildPhases = (
+				163B4C9A91E3CCAEF0F5F881 /* [CP] Check Pods Manifest.lock */,
+				82C8A3BB24F312C000B9D169 /* Sources */,
+				82C8A3BC24F312C000B9D169 /* Frameworks */,
+				82C8A3BD24F312C000B9D169 /* Resources */,
+				2506B44B93CA335C49B227A2 /* [CP] Embed Pods Frameworks */,
+				670ADF74F8EA2E23DA9531D2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82C8A3C524F312C000B9D169 /* PBXTargetDependency */,
+			);
+			name = "Enhance IdeasTests";
+			productName = "Enhance IdeasTests";
+			productReference = 82C8A3BF24F312C000B9D169 /* Enhance IdeasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		82EDDEF024D324F100F42688 /* Enhance Ideas */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82EDDF0824D324F200F42688 /* Build configuration list for PBXNativeTarget "Enhance Ideas" */;
@@ -193,10 +254,14 @@
 		82EDDEE924D324F100F42688 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = Cedric;
 				TargetAttributes = {
+					82C8A3BE24F312C000B9D169 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 82EDDEF024D324F100F42688;
+					};
 					82EDDEF024D324F100F42688 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -216,11 +281,19 @@
 			projectRoot = "";
 			targets = (
 				82EDDEF024D324F100F42688 /* Enhance Ideas */,
+				82C8A3BE24F312C000B9D169 /* Enhance IdeasTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		82C8A3BD24F312C000B9D169 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82EDDEEF24D324F100F42688 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +310,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		163B4C9A91E3CCAEF0F5F881 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Enhance IdeasTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2506B44B93CA335C49B227A2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		670ADF74F8EA2E23DA9531D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Enhance IdeasTests/Pods-Enhance IdeasTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		728951B8AC493A9C4DBFFF2B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +442,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		82C8A3BB24F312C000B9D169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82C8A3C224F312C000B9D169 /* Enhance_IdeasTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82EDDEED24D324F100F42688 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,13 +458,13 @@
 				82EDDF1A24D32B9800F42688 /* UIViewExtension.swift in Sources */,
 				82EDDF1124D3268900F42688 /* SceneDelegate.swift in Sources */,
 				82170B7A24D9C20200D9870E /* EnhanceIdeasViewController.swift in Sources */,
+				8276648A24F75E9F00513E9C /* ProfilePictureViewDownloader.swift in Sources */,
 				821CC9B024E99C11006689F6 /* EnhancedIdeasViewController.swift in Sources */,
 				821CC9A824E64234006689F6 /* IdeasTableViewCell.swift in Sources */,
 				82EDDF1024D3268200F42688 /* AppDelegate.swift in Sources */,
 				82A11E7524D5D57700BB129D /* SignInViewController.swift in Sources */,
 				821CC9B624EA6FA9006689F6 /* Comment.swift in Sources */,
 				82D1D32D24EDF0980046E85D /* AutosizeUITextView.swift in Sources */,
-				82EDDF0F24D3267600F42688 /* Enhance_Ideas.xcdatamodeld in Sources */,
 				82D1D32F24EE0A060046E85D /* UIButtonExtension.swift in Sources */,
 				821CC9AC24E8C709006689F6 /* FirestoreManagement.swift in Sources */,
 				821CC9B424EA0053006689F6 /* IdeaDetailViewController.swift in Sources */,
@@ -338,7 +475,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		82C8A3C524F312C000B9D169 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82EDDEF024D324F100F42688 /* Enhance Ideas */;
+			targetProxy = 82C8A3C424F312C000B9D169 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		82C8A3C724F312C000B9D169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03D0BBE576606EC6A6C377C3 /* Pods-Enhance IdeasTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y76M773K4Z;
+				INFOPLIST_FILE = "Enhance IdeasTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Madaragog.Enhance-IdeasTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enhance Ideas.app/Enhance Ideas";
+			};
+			name = Debug;
+		};
+		82C8A3C824F312C000B9D169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2032BBC4263C795CE7CC95A1 /* Pods-Enhance IdeasTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y76M773K4Z;
+				INFOPLIST_FILE = "Enhance IdeasTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Madaragog.Enhance-IdeasTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enhance Ideas.app/Enhance Ideas";
+			};
+			name = Release;
+		};
 		82EDDF0624D324F200F42688 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,6 +683,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		82C8A3C624F312C000B9D169 /* Build configuration list for PBXNativeTarget "Enhance IdeasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82C8A3C724F312C000B9D169 /* Debug */,
+				82C8A3C824F312C000B9D169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		82EDDEEC24D324F100F42688 /* Build configuration list for PBXProject "Enhance Ideas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -513,19 +711,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		82EDDEFD24D324F100F42688 /* Enhance_Ideas.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				82EDDEFE24D324F100F42688 /* Enhance_Ideas.xcdatamodel */,
-			);
-			currentVersion = 82EDDEFE24D324F100F42688 /* Enhance_Ideas.xcdatamodel */;
-			path = Enhance_Ideas.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 82EDDEE924D324F100F42688 /* Project object */;
 }

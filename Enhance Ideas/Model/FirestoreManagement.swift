@@ -9,7 +9,6 @@
 import Foundation
 import Firebase
 import FirebaseUI
-
 // swiftlint:disable identifier_name redundant_optional_initialization
 class FirestoreManagement {
     static let shared = FirestoreManagement()
@@ -17,15 +16,17 @@ class FirestoreManagement {
 
     public var googleUser = ""
     public var userEmail = ""
+    public let storagePath = Storage.storage().reference().child("/userProfilePicture")
 
     private(set) var ideasToEnhance: [Idea] = []
     private(set) var enhancedIdeas: [Idea] = []
     private(set) var ideaComments: [Comment] = []
+
     private let db = Firestore.firestore()
 
     public func uploadProfilePicture(image: UIImage) {
         let imageName = "\(userEmail)ProfilePicture.jpeg"
-        let storageRef = Storage.storage().reference().child("/userProfilePicture").child(imageName)
+        let storageRef = storagePath.child(imageName)
 
         let uploadData = image.jpegData(compressionQuality: 0.05)
 
@@ -33,28 +34,11 @@ class FirestoreManagement {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if let error = error {
                     print("\(error.localizedDescription)")
-//                    NotificationCenter.default.post(name:
-//                        NSNotification.Name(rawValue: "profilePicError"),
-//                                                    object: nil)
                     return
                 }
                 print(metadata!)
-//                NotificationCenter.default.post(name:
-//                NSNotification.Name(rawValue: "fetchPP"),
-//                                            object: nil)
             }
         }
-    }
-
-    public func downloadProfilePicture(uIImageView: UIImageView, userEmail: String) {
-        let imageName = "\(userEmail)ProfilePicture.jpeg"
-        let storageRef = Storage.storage().reference().child("/userProfilePicture").child(imageName)
-        // UIImageView in your ViewController
-        let imageView: UIImageView = uIImageView
-        // Placeholder image
-        let placeholderImage = UIImage(named: "placeholder.jpg")
-        // Load the image using SDWebImage
-        imageView.sd_setImage(with: storageRef, placeholderImage: placeholderImage)
     }
 
     public func readFirestoreIdeasData() {
@@ -64,20 +48,18 @@ class FirestoreManagement {
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                var ideas: [Idea] = []
                 for document in querySnapshot!.documents {
                     let author = document["author"] as? String ?? ""
                     let idea = document["idea"] as? String ?? ""
-                    guard let isCompleted = document["isCompleted"] as? Bool else {
-                        return
-                    }
+                    let isCompleted = document["isCompleted"] as? Bool ?? false
                     let authorEmail = document["authorEmail"] as? String ?? ""
-                    var ideas: [Idea] = []
                     ideas.append(Idea(documentID: document.documentID,
                                                     author: author,
                                                     idea: idea,
                                                     isCompleted: isCompleted, authorEmail: authorEmail))
-                    self.handleIdeas(ideas: ideas)
                 }
+                self.handleIdeas(ideas: ideas)
             }
         }
     }
@@ -89,19 +71,19 @@ class FirestoreManagement {
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                var comments: [Comment] = []
                 for document in querySnapshot!.documents {
                     let author = document["author"] as? String ?? ""
                     let comment = document["comment"] as? String ?? ""
                     let ideaID = document["ideaID"] as? String ?? ""
                     let authorEmail = document["authorEmail"] as? String ?? ""
                     let noSpaceIdeaID = ideaID.replacingOccurrences(of: " ", with: "")
-                    var comments: [Comment] = []
                     comments.append(Comment(commentID: document.documentID,
                                             ideaID: noSpaceIdeaID,
                                             author: author,
                                             comment: comment, authorEmail: authorEmail))
-                    self.handleComments(comments: comments)
                 }
+                self.handleComments(comments: comments)
             }
         }
     }
@@ -137,7 +119,7 @@ class FirestoreManagement {
             }
         }
     }
-
+// When the author decides that an idea is now enhanced
     public func updateIdeaFromEnhanceToEnhanced(ideaID: String) {
         let idea = db.collection("ideasToEnhance").document(ideaID)
         idea.updateData([
@@ -152,7 +134,7 @@ class FirestoreManagement {
             }
         }
     }
-
+// When an idea (its text) is modified
     public func updateIdea(idea: Idea) {
         ideasToEnhance.removeAll()
         let ref = db.collection("ideasToEnhance").document(idea.documentID)
@@ -166,7 +148,7 @@ class FirestoreManagement {
             }
         }
     }
-
+// When a comment (its text) is modified
     public func updateComment(comment: Comment) {
         let ref = db.collection("comments").document(comment.commentID)
         ref.updateData([
@@ -206,8 +188,9 @@ class FirestoreManagement {
             }
         }
     }
-
-    private func handleIdeas(ideas: [Idea]) {
+// separates enhanced and non enhanced ideas and verifies if an idea is not already
+// downloaded before adding it to the arrays that will displays them
+    func handleIdeas(ideas: [Idea]) {
         let uncompletedIdeas = ideas.filter { $0.isCompleted == false }
         let completedIdeas = ideas.filter { $0.isCompleted == true }
 
@@ -219,11 +202,11 @@ class FirestoreManagement {
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataReceived"), object: nil)
     }
-
-    private func handleComments(comments: [Comment]) {
-        for comment in comments where ideaComments.contains(comment) == false {
-            ideaComments.insert(comment, at: 0)
-        }
+//    verifies if a comment is not already downloaded before adding it to the arrays that will displays them
+    func handleComments(comments: [Comment]) {
+         for comment in comments where ideaComments.contains(comment) == false {
+             ideaComments.insert(comment, at: 0)
+         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CommentsReceived"), object: nil)
     }
 }

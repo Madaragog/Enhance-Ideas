@@ -350,9 +350,6 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
-  - Kingfisher (5.15.0):
-    - Kingfisher/Core (= 5.15.0)
-  - Kingfisher/Core (5.15.0)
   - leveldb-library (1.22)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
@@ -372,7 +369,6 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - FirebaseUI/Storage
   - GoogleSignIn
-  - Kingfisher
 
 SPEC REPOS:
   trunk:
@@ -397,7 +393,6 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
-    - Kingfisher
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -425,12 +420,11 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
-  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
 
-PODFILE CHECKSUM: 476c33cac35a92c8268a5bfd6eed1d925e566854
+PODFILE CHECKSUM: c04e9765eebbd289f698768f41b66a02f6e70ab1
 
 COCOAPODS: 1.9.3

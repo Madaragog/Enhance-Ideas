@@ -69,6 +69,7 @@ extension EnhancedIdeasViewController: UITableViewDataSource, UITableViewDelegat
         self.performSegue(withIdentifier: "EnhancedIdeaDetailSegue", sender: nil)
     }
 // swiftlint:disable force_cast
+//    transfers the idea to IdeaDetailViewController when the segue is performed
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EnhancedIdeaDetailSegue" {
             let destinationVC = segue.destination as! IdeaDetailViewController

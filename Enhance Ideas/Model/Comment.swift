@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// Comment Object
 struct Comment: Equatable {
     var commentID = ""
     var ideaID = ""

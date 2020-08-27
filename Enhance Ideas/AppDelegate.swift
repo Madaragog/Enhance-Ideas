@@ -64,6 +64,15 @@ extension AppDelegate: GIDSignInDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Configure Firebase
         FirebaseApp.configure()
+        // Checking if unit tests are running
+        if ProcessInfo.processInfo.environment["unit_tests"] == "true" {
+          print("Setting up Firebase emulator localhost:8080")
+          let settings = Firestore.firestore().settings
+          settings.host = "localhost:8080"
+          settings.isPersistenceEnabled = false
+          settings.isSSLEnabled = false
+          Firestore.firestore().settings = settings
+        }
         // Initialize sign-in with google
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
@@ -102,16 +111,6 @@ extension AppDelegate: GIDSignInDelegate {
         NSNotification.Name("performSuccessSignInSegue"), object: nil)
         FirestoreManagement.shared.googleUser = user.profile.name
         FirestoreManagement.shared.userEmail = user.profile.email
-        /*
-            MAYBE THE FOLLOWING ISN'T WORKING NOW THAT I'M CONNECTED TO FIREBASE WITH SIGN-IN WITH GOOGLE
-        // Perform any operations on signed in user here.
-        let userId = user.userID                  // For client-side use only!
-        let idToken = user.authentication.idToken // Safe to send to the server
-        let fullName = user.profile.name
-        let givenName = user.profile.givenName
-        let familyName = user.profile.familyName
-        let email = user.profile.email
-        */
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

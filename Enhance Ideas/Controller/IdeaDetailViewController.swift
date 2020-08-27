@@ -50,15 +50,15 @@ class IdeaDetailViewController: UIViewController {
         commentTextField.resignFirstResponder()
         didPressSubmitButton()
     }
-
+// when the idea is pressed it shows the detail of it
     @IBAction func authorDidPressIdea(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "IdeaDetailSegue", sender: nil)
     }
-
+// dissmisses the controller
     @IBAction func pressedCancelButton() {
         dismiss(animated: true, completion: nil)
     }
-
+// changes the status of the idea from not enhanced to enhanced
     @IBAction func didPressEnhancedButton() {
         guard let idea = idea else {
             return
@@ -66,7 +66,7 @@ class IdeaDetailViewController: UIViewController {
         FirestoreManagement.shared.updateIdeaFromEnhanceToEnhanced(ideaID: idea.documentID)
         pressedCancelButton()
     }
-
+// submits the comment
     @IBAction func didPressSubmitButton() {
         if let comment = commentTextField.text, comment != "" {
             guard let ideaID = idea?.documentID else {
@@ -78,12 +78,12 @@ class IdeaDetailViewController: UIViewController {
             commentTextField.text = "Please write something"
         }
     }
-
+// configures the display
     private func configure() {
         authorProfilePicImageView.addViewBorder(borderColor: #colorLiteral(red: 0.8084151745, green: 0.4952875972, blue: 0.3958609998, alpha: 1), borderWith: 1.0, borderCornerRadius: 11)
         if let authorEmail = idea?.authorEmail {
-            FirestoreManagement.shared.downloadProfilePicture(uIImageView: authorProfilePicImageView,
-                                                              userEmail: authorEmail)
+            ProfilePictureViewDownloader().downloadProfilePicture(uIImageView: authorProfilePicImageView,
+                                                                       userEmail: authorEmail)
         }
         commentsTableView.rowHeight = UITableView.automaticDimension
         detailTopView.addShadow(yValue: 45, height: 5, color: #colorLiteral(red: 0.8084151745, green: 0.4952875972, blue: 0.3958609998, alpha: 1))
@@ -103,7 +103,7 @@ class IdeaDetailViewController: UIViewController {
             }
         }
     }
-
+// adapts the view when the keyboard is shown
     @objc private func handleKeyboardWillShowNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
@@ -126,7 +126,7 @@ class IdeaDetailViewController: UIViewController {
             submitButton.addGestureRecognizer(submitButtonTapGestureRecognizer)
         }
     }
-
+// puts the view back when the keyboard is resigned
     @objc private func handleKeyboardWillHideNotification(notification: NSNotification) {
         guard bottomConstraint != nil else {
             return
@@ -215,6 +215,8 @@ extension IdeaDetailViewController: UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: "CommentDetailSegue", sender: nil)
     }
 // swiftlint:disable force_cast
+//    prepares the segues dependeing on which one is performed SubmitIdeaViewController
+//    wil show the detail of a comment or the detail of the idea
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentDetailSegue" {
             let destinationVC = segue.destination as! SubmitIdeaViewController
