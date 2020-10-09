@@ -1,3 +1,5 @@
+SCHOOL PROJECT
+
 # Enhance-Ideas
 
 App Icon link : 
